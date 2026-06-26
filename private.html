@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Feedback | Richmond Brake &amp; Clutch</title>
+<meta name="description" content="Share your feedback privately with Richmond Brake & Clutch.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="fb-wrap">
+  <div class="fb-card">
+    <a href="index.html" class="back-link" style="position:static;color:var(--muted);display:inline-flex;margin-bottom:18px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to site
+    </a>
+    <div id="formView">
+      <span class="eyebrow">We want to put it right</span>
+      <h1>Tell us what happened</h1>
+      <p>Thanks for being honest — your feedback comes straight to us and helps us do better. We read every message.</p>
+      <div class="rating-pill" id="ratingPill">★ Your rating: <span id="ratingNum">—</span> / 5</div>
+      <form id="fbForm" action="https://formsubmit.co/office@richmondvts.co.nz" method="POST">
+        <input type="hidden" name="_subject" value="Private feedback — Richmond Brake & Clutch">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="Rating" id="ratingField" value="">
+        <div class="field"><label>Name</label><input type="text" name="Name" placeholder="Your name" required></div>
+        <div class="field"><label>Email</label><input type="email" name="Email" placeholder="you@email.co.nz" required></div>
+        <div class="field"><label>Rating</label>
+          <select name="RatingChoice" id="ratingSelect">
+            <option value="1">1 — Poor</option>
+            <option value="2">2 — Below expectations</option>
+            <option value="3">3 — OK</option>
+          </select>
+        </div>
+        <div class="field"><label>What could we have done better?</label><textarea name="Feedback" placeholder="Tell us what let you down so we can make it right..." required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Send Feedback</button>
+      </form>
+    </div>
+    <div class="success" id="successView">
+      <div class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 6"/></svg></div>
+      <h2>Thank you</h2>
+      <p>We've got your feedback and we'll be in touch to put things right. We genuinely appreciate you taking the time.</p>
+      <a href="index.html" class="btn btn-outline" style="margin-top:24px">Back to home</a>
+    </div>
+  </div>
+</div>
+<script>
+// Pre-fill rating from URL
+var params = new URLSearchParams(window.location.search);
+var rating = params.get('rating');
+if (rating && ['1','2','3'].indexOf(rating) !== -1) {
+  document.getElementById('ratingNum').textContent = rating;
+  document.getElementById('ratingField').value = rating;
+  var sel = document.getElementById('ratingSelect');
+  sel.value = rating;
+} else {
+  document.getElementById('ratingPill').style.display = 'none';
+}
+document.getElementById('ratingSelect').addEventListener('change', function(){
+  document.getElementById('ratingField').value = this.value;
+  document.getElementById('ratingNum').textContent = this.value;
+});
+
+// AJAX submit → show success state
+document.getElementById('fbForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var form = e.target;
+  fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} })
+    .then(function(){ document.getElementById('formView').style.display='none'; document.getElementById('successView').classList.add('show'); window.scrollTo(0,0); })
+    .catch(function(){ document.getElementById('formView').style.display='none'; document.getElementById('successView').classList.add('show'); });
+});
+</script>
+</body>
+</html>

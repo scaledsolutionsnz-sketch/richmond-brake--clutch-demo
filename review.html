@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave a Review | Richmond Brake &amp; Clutch</title>
+<meta name="description" content="Tell us how we did. Leave a quick rating for Richmond Brake & Clutch.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="review-wrap">
+  <a href="index.html" class="back-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to site
+  </a>
+  <div class="review-card">
+    <span class="badge">Richmond Brake &amp; Clutch</span>
+    <h1>How did we do?</h1>
+    <p>Your feedback keeps a small local workshop running. Tap a star to let us know how we went.</p>
+    <div class="star-row" id="stars">
+      <button class="star-btn" data-v="1" aria-label="1 star">★</button>
+      <button class="star-btn" data-v="2" aria-label="2 stars">★</button>
+      <button class="star-btn" data-v="3" aria-label="3 stars">★</button>
+      <button class="star-btn" data-v="4" aria-label="4 stars">★</button>
+      <button class="star-btn" data-v="5" aria-label="5 stars">★</button>
+    </div>
+    <p class="small">5 stars opens our Google review page · 1–3 stars sends private feedback straight to us.</p>
+  </div>
+</div>
+<script>
+// 4–5 stars → Google review; 1–3 → private feedback form
+var GOOGLE_REVIEW_URL = "https://g.page/r/PLACEHOLDER/review";
+var row = document.getElementById('stars');
+row.querySelectorAll('.star-btn').forEach(function(btn){
+  btn.addEventListener('mouseenter', function(){
+    var v = +btn.dataset.v;
+    row.querySelectorAll('.star-btn').forEach(function(b){ b.style.color = (+b.dataset.v <= v) ? '' : 'rgba(255,255,255,.22)'; });
+    row.classList.add('hl');
+    row.querySelectorAll('.star-btn').forEach(function(b){ if(+b.dataset.v <= v) b.style.color = 'var(--accent)'; });
+  });
+  btn.addEventListener('click', function(){
+    var v = +btn.dataset.v;
+    if (v >= 4) { window.location.href = GOOGLE_REVIEW_URL; }
+    else { window.location.href = 'private.html?rating=' + v; }
+  });
+});
+row.addEventListener('mouseleave', function(){
+  row.classList.remove('hl');
+  row.querySelectorAll('.star-btn').forEach(function(b){ b.style.color = 'rgba(255,255,255,.22)'; });
+});
+</script>
+</body>
+</html>
