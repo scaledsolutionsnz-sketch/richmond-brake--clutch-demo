@@ -37,6 +37,7 @@
     color:rgba(244,241,234,.9);
     background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
     pointer-events:none;
+    animation:chTop .7s ease both;
   }
   .chooser-top .dot{color:var(--accent)}
   .chooser-top .addr{color:rgba(244,241,234,.6);font-family:'Sora';letter-spacing:.04em;text-transform:none;font-size:.78rem}
@@ -53,7 +54,10 @@
   .panel::before{
     content:""; position:absolute; inset:0; z-index:0;
     transition:transform .6s var(--ease), opacity .4s var(--ease);
+    animation:chOpen .9s var(--ease) both;
   }
+  .panel--brake::before{transform-origin:right center}
+  .panel--rvts::before{transform-origin:left center}
   .panel--brake::before{
     background:
       radial-gradient(120% 90% at 15% 20%, rgba(224,39,24,.20), transparent 55%),
@@ -67,7 +71,13 @@
   .panel-inner{
     position:relative; z-index:2; max-width:440px; width:100%;
     padding:40px 44px; text-align:left;
+    animation:chFade .75s var(--ease) both;
   }
+  .panel--brake .panel-inner{animation-delay:.18s}
+  .panel--rvts .panel-inner{animation-delay:.32s}
+  @keyframes chFade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  @keyframes chOpen{from{opacity:0;transform:scaleX(1.14)}to{opacity:1;transform:none}}
+  @keyframes chTop{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
   .panel-kicker{
     display:inline-flex; align-items:center; gap:9px;
     font-family:'Khand',sans-serif; font-weight:600; text-transform:uppercase;
@@ -131,6 +141,7 @@
 
   @media (prefers-reduced-motion:reduce){
     .panel,.panel::before,.panel-btn,.panel-btn svg{transition:none}
+    .panel-inner,.panel::before,.chooser-top{animation:none}
     .split:hover .panel{flex-grow:1;opacity:1}
     .split:hover .panel:hover{flex-grow:1}
   }
