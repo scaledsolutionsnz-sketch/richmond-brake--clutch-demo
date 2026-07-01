@@ -3,48 +3,336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Richmond Vehicle Testing Station | WOF &amp; Vehicle Testing, Richmond</title>
-<meta name="description" content="Richmond Vehicle Testing Station. WOF, prechecks and vehicle inspections at 13 McGlashen Ave, Richmond 7020. Call 03 544 9111.">
-<meta name="robots" content="noindex">
+<title>Richmond Vehicle Testing Station | WOF &amp; Vehicle Inspections, Richmond</title>
+<meta name="description" content="Richmond Vehicle Testing Station. Warrant of Fitness, prechecks and vehicle inspections in Richmond. Tested, trusted, road ready. 4.8 stars from 43 Google reviews. Call the station on 03 544 9111.">
+<meta property="og:title" content="Richmond Vehicle Testing Station, WOF & Vehicle Inspections, Richmond">
+<meta property="og:description" content="Safe vehicles. Safe roads. Peace of mind. WOF, prechecks and inspections at 13 McGlashen Ave, Richmond.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://richmond-brake-clutch-demo.vercel.app/assets/img/rvts-logo.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  /* Phase 1 placeholder. Full green themed RVTS site is built in Phase 2. */
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:'Sora',system-ui,sans-serif;
-    background:
-      radial-gradient(120% 90% at 80% 15%, rgba(125,182,28,.28), transparent 55%),
-      linear-gradient(135deg,#14330f 0%,#10230b 45%,#0E0E0E 100%);
-    color:#f4f1ea; min-height:100svh;
-    display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:40px 24px; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:560px}
-  .kicker{font-family:'Khand';font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:.82rem;color:#7DB61C;margin-bottom:18px;display:block}
-  h1{font-family:'Khand';font-weight:700;text-transform:uppercase;line-height:.98;font-size:clamp(2.2rem,6vw,3.4rem);margin-bottom:16px}
-  p{color:rgba(244,241,234,.82);font-size:1.05rem;line-height:1.6;margin-bottom:14px}
-  .row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:28px}
-  a.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Khand';font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;padding:14px 26px;border-radius:6px;text-decoration:none}
-  .btn-green{background:#7DB61C;color:#0E0E0E}
-  .btn-ghost{border:1.5px solid rgba(244,241,234,.4);color:#f4f1ea}
-  .meta{margin-top:26px;font-family:'Khand';letter-spacing:.06em;color:rgba(244,241,234,.7)}
-  .meta b{color:#fff}
-</style>
+<link rel="stylesheet" href="rvts.css">
 </head>
 <body>
-  <div class="wrap">
-    <span class="kicker">Richmond Vehicle Testing Station</span>
-    <h1>Safe vehicles. Safe roads. Peace of mind.</h1>
-    <p>Our full WOF and vehicle testing website is on its way. In the meantime, give the station a call or book in.</p>
-    <div class="row">
-      <a class="btn btn-green" href="tel:+6435449111">Call 03 544 9111</a>
-      <a class="btn btn-ghost" href="index.html">Back to chooser</a>
-    </div>
-    <div class="meta">13 McGlashen Ave, Richmond 7020 &nbsp;&bull;&nbsp; <b>office@richmondvts.co.nz</b></div>
+
+<!-- Intro overlay -->
+<div id="intro">
+  <div class="il">
+    <span style="animation-delay:.05s">RICHMOND</span>
+    <span class="hl" style="animation-delay:.18s">VEHICLE</span>
+    <span style="animation-delay:.31s">TESTING</span>
   </div>
+  <div class="bar"></div>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="rvts.html" class="brand">
+    <img class="brand-logo" src="assets/img/rvts-logo.png" alt="Richmond Vehicle Testing Station">
+  </a>
+  <div class="nav-links">
+    <a class="lnk" href="#services">Services</a>
+    <a class="lnk" href="#about">About</a>
+    <a class="lnk" href="#crew">The Station</a>
+    <a class="lnk" href="#reviews">Reviews</a>
+    <a class="lnk" href="#contact">Contact</a>
+    <a class="nav-phone" href="tel:+6435449111">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
+      03 544 9111
+    </a>
+  </div>
+  <div class="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1900&q=70')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1900&q=70')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1900&q=70')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <span class="eyebrow">Richmond · Nelson · Tasman</span>
+    <h1>Safe vehicles. Safe roads. <span class="hl">Peace of mind.</span></h1>
+    <p class="sub">Richmond Vehicle Testing Station handles your Warrant of Fitness, prechecks and inspections. Tested, trusted, road ready, with anything your vehicle needs shown and quoted first.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Book a WOF</a>
+      <a href="tel:+6435449111" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call the station
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="m"><b>4.8★</b><span class="stars">★★★★★</span></div>
+      <div class="m"><b>43</b><span>Google reviews</span></div>
+      <div class="m"><b>Local</b><span>Richmond station</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<!-- Trust strip -->
+<section class="trust" style="padding:0">
+  <div class="wrap">
+    <div class="t reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div><h3>Right here in Richmond</h3><p>An established local testing station at 13 McGlashen Ave. Drop in or book ahead and talk to the person doing the check.</p></div>
+    </div>
+    <div class="t reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <div><h3>Done while you wait</h3><p>Most Warrant of Fitness checks are sorted on the spot. We know you have places to be, so we do not sit on it.</p></div>
+    </div>
+    <div class="t reveal">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div><h3>No surprises</h3><p>If something needs doing to pass, we show you and quote it before any work starts. You decide what happens next.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="sec-light">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>Testing and inspections, done properly</h2>
+      <p>From your yearly Warrant of Fitness to a full pre-purchase inspection, we check the things that keep Richmond drivers safe and legal on the road.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <span class="num">01</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></div>
+        <h3>Warrant of Fitness</h3>
+        <p>WOF checks done while you wait. Anything needed to pass is shown to you and quoted first, so there are no surprises.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="num">02</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Prechecks</h3>
+        <p>Be ready and be confident before the official test. We run through everything first so your WOF goes through cleanly.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="num">03</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Vehicle Inspections</h3>
+        <p>Thorough, reliable and trusted pre-purchase and safety checks. Know exactly what you are buying, or where your vehicle stands.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="num">04</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+        <h3>Brakes &amp; Suspension</h3>
+        <p>Safety comes first. We check pads, discs, shocks and struts so your vehicle stops straight and sits the way it should.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="num">05</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-2M12 12l-2 4"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
+        <h3>Tyres &amp; Steering</h3>
+        <p>Grip, control and confidence. We check tread, wear and steering so the vehicle tracks true and holds the road.</p>
+      </div>
+      <div class="svc reveal">
+        <span class="num">06</span>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></div>
+        <h3>Lights &amp; Mechanical</h3>
+        <p>Working well and driving well. Lights, wipers, horn and the mechanical basics all checked so nothing lets you down.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="sec-paper">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=900&q=70" alt="A vehicle up on the hoist being inspected in the workshop" width="900" height="675" loading="lazy">
+        <div class="tag"><b>4.8★</b><span>Rated by locals</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">About the station</span>
+        <h2>The testing station Richmond drivers trust</h2>
+        <p>Richmond Vehicle Testing Station is run by Barry Andrews out of the same premises as the brake and clutch workshop, at 13 McGlashen Ave. One address, two trades, and the same honest approach to both.</p>
+        <p>You deal with the people doing the inspection, get a clear explanation of anything your vehicle needs, and only ever pay for what actually needs doing. That is how the station has earned a 4.8 star rating from local drivers.</p>
+        <ul class="checklist">
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Locally owned and run, right in Richmond</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Anything needed shown and quoted first</li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>WOF, prechecks and inspections under one roof</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="margin-top:30px">Book your WOF</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Crew -->
+<section id="crew" class="sec-dark">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">The team</span>
+      <h2>The people doing the checks</h2>
+      <p>A small, hands-on station. When you call, you talk to someone who knows vehicles inside out.</p>
+    </div>
+    <div style="text-align:center;margin-bottom:30px"><span class="badge">Owner real · other roles illustrative</span></div>
+    <div class="crew-grid">
+      <div class="crew reveal">
+        <div class="av">BA</div>
+        <div class="role">Managing Director</div>
+        <h3>Barry Andrews</h3>
+        <p>Runs both the testing station and the brake workshop. Barry is the one who will tell you straight what your vehicle needs and what it does not.</p>
+      </div>
+      <div class="crew reveal">
+        <div class="av">VI</div>
+        <div class="role">Vehicle Inspector</div>
+        <h3>WOF Inspector</h3>
+        <p>Carries out the Warrant of Fitness checks and inspections, by the book, so you leave knowing exactly where your vehicle stands.</p>
+      </div>
+      <div class="crew reveal">
+        <div class="av">FD</div>
+        <div class="role">Front Desk</div>
+        <h3>Bookings &amp; Service</h3>
+        <p>Gets you booked in, keeps you posted while the check is on, and makes sure the whole thing is quick and easy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="sec-light">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center">What locals say</span>
+      <h2>Trusted by Richmond drivers</h2>
+      <p><span class="badge">Example reviews</span></p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"In and out for my WOF in no time. They spotted a worn wiper and a light out, showed me both and sorted them on the spot for a fair price. Easy and honest, exactly what you want."</p>
+        <div class="who"><span class="ci">TH</span><div><b>Tania H.</b><span>Richmond</span></div></div>
+        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#7DB61C" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
+      </div>
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Booked a pre-purchase inspection before buying a used car. Thorough report, clear advice, and it saved me from a real lemon. Cannot recommend the team highly enough."</p>
+        <div class="who"><span class="ci">GM</span><div><b>Grant M.</b><span>Stoke</span></div></div>
+        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#7DB61C" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
+      </div>
+      <div class="rev reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Failed my WOF elsewhere and came here for a second opinion. They talked me through everything, quoted it up front and had it passing the same day. Friendly and straight up."</p>
+        <div class="who"><span class="ci">LP</span><div><b>Leah P.</b><span>Brightwater</span></div></div>
+        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#7DB61C" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Review funnel banner -->
+<section class="funnel">
+  <div class="wrap">
+    <div class="stars reveal">★★★★★</div>
+    <h2 class="reveal">Happy with your visit? Leave us a review</h2>
+    <p class="reveal">It takes thirty seconds and it genuinely helps a small local station. Tap below to leave a quick rating.</p>
+    <a href="review.html" class="btn btn-primary reveal">Leave a Review</a>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Book your WOF</h2>
+        <p>Tell us the vehicle and what you need, and we will get back to you with a time. For anything urgent, give the station a call, the phone is the fastest way to reach us.</p>
+        <div class="cinfo">
+          <a href="tel:+6435449111">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div><b>03 544 9111</b><span>Call the station</span></div>
+          </a>
+          <a href="mailto:office@richmondvts.co.nz">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <div><b>office@richmondvts.co.nz</b><span>Email us</span></div>
+          </a>
+          <div>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>13 McGlashen Ave</b><span>Richmond 7020</span></div>
+          </div>
+          <div>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><b>Mon to Fri, 8am to 5pm</b><span>Station hours</span></div>
+          </div>
+        </div>
+      </div>
+      <form class="form reveal" action="https://formsubmit.co/office@richmondvts.co.nz" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry from the Richmond Vehicle Testing Station website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://richmond-brake-clutch-demo.vercel.app/rvts.html#contact">
+        <div class="row">
+          <div class="field"><label>Name</label><input type="text" name="Name" placeholder="Your name" required></div>
+          <div class="field"><label>Phone</label><input type="tel" name="Phone" placeholder="Best number to reach you" required></div>
+        </div>
+        <div class="row">
+          <div class="field"><label>Email</label><input type="email" name="Email" placeholder="you@email.co.nz"></div>
+          <div class="field"><label>Suburb</label><input type="text" name="Suburb" placeholder="Richmond, Stoke..."></div>
+        </div>
+        <div class="field">
+          <label>What do you need?</label>
+          <select name="Service">
+            <option>Warrant of Fitness</option>
+            <option>Precheck</option>
+            <option>Vehicle inspection</option>
+            <option>Brakes &amp; suspension</option>
+            <option>Tyres &amp; steering</option>
+            <option>Not sure, please advise</option>
+          </select>
+        </div>
+        <div class="field"><label>Vehicle &amp; details</label><textarea name="Message" placeholder="Make and model, rego, and what you need, for example 'WOF due', 'pre-purchase inspection'..." required></textarea></div>
+        <button type="submit" class="btn btn-primary">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="rvts.html" class="brand">
+          <img class="brand-logo" src="assets/img/rvts-logo.png" alt="Richmond Vehicle Testing Station">
+        </a>
+        <p>Warrant of Fitness, prechecks and vehicle inspections in Richmond, Nelson. Tested, trusted, road ready, run by Barry Andrews at 13 McGlashen Ave.</p>
+      </div>
+      <div class="foot-col">
+        <h4>The station</h4>
+        <a href="#services">Services</a>
+        <a href="#about">About us</a>
+        <a href="#crew">The team</a>
+        <a href="#reviews">Reviews</a>
+        <a href="review.html">Leave a review</a>
+      </div>
+      <div class="foot-col">
+        <h4>Get in touch</h4>
+        <a href="tel:+6435449111">03 544 9111</a>
+        <a href="mailto:office@richmondvts.co.nz">office@richmondvts.co.nz</a>
+        <p>13 McGlashen Ave, Richmond 7020</p>
+        <p>Mon to Fri, 8am to 5pm</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Richmond Vehicle Testing Station · Richmond, Nelson</p>
+      <div class="links">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="review.html">Reviews</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 </html>

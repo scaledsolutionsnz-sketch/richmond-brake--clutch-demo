@@ -1,0 +1,26 @@
+/* ==========================================================================
+   RVTS green theme.
+   Imports the shared structure from styles.css (the Brake & Clutch design
+   system) and overrides only the accent tokens plus a few RVTS specifics.
+   Keeping this file thin means tweaking RVTS green never touches the Brake
+   & Clutch look.
+   ========================================================================== */
+@import url('styles.css');
+
+:root{
+  --accent:#7DB61C;        /* RVTS green (from the signage) */
+  --accent-d:#63920f;      /* darker green for hovers */
+  --accent-soft:rgba(125,182,28,.14);
+}
+
+/* Nav + footer use the metal RVTS badge instead of the text lockup */
+.brand-logo{height:46px;width:auto;display:block}
+.footer .brand-logo{height:52px}
+@media(max-width:600px){ .brand-logo{height:38px} }
+
+/* A subtle green wash over the hero so the testing side reads green, not red */
+.hero-overlay{
+  background:
+    radial-gradient(120% 85% at 82% 12%, rgba(125,182,28,.22), transparent 55%),
+    linear-gradient(180deg, rgba(10,16,8,.35) 0%, rgba(8,12,7,.55) 45%, rgba(8,12,7,.9) 100%);
+}
