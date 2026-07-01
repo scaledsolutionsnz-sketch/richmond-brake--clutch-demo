@@ -2,7 +2,30 @@
 
 Running log of what has been done, phase by phase. Newest at top.
 
-## Phase 2 — RVTS site (DONE, awaiting approval)
+## Phase 3 — Nav switcher (DONE, awaiting approval)
+Date: 2026-07-01
+
+What changed:
+- Added a segmented switcher to both nav bars: "Brake & Clutch" and "Testing Station",
+  plus a small house icon that returns to the chooser (index.html).
+- Real anchor links. Active segment marked with aria-current="page" and highlighted in the
+  current side's accent (red on brake, green on RVTS, via var(--accent), no extra CSS).
+- Switcher lives as the first child of .nav-links, so on desktop it sits inline and on
+  mobile it drops into the existing slide-in menu at the top.
+- Shared CSS added to styles.css (so both sites inherit; RVTS gets green automatically).
+- Moved the mobile menu collapse breakpoint from 680px up to 920px so the switcher has
+  room inline on desktop and tucks into the hamburger on tablet/mobile. The 680px block
+  keeps the finer mobile rules (grid stacks, section padding, etc.). This applies to both
+  sites and does not change the brake look above 920px.
+
+Verification:
+- Switcher present on brake-clutch.html and rvts.html; cross-links resolve both ways;
+  home icon returns to the chooser. Active state correct per side.
+
+Next: Phase 4 (dog mascot on both sites, not the chooser). STOP for approval first.
+CONFIRM at Phase 4: keep the Santa hat on the supplied dog, or cut it.
+
+## Phase 2 — RVTS site (DONE, approved)
 Date: 2026-07-01
 
 Assets received from client and added:
