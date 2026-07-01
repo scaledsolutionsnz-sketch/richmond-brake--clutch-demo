@@ -2,7 +2,39 @@
 
 Running log of what has been done, phase by phase. Newest at top.
 
-## Phase 3 — Nav switcher (DONE, awaiting approval)
+## Phase 4 — Dog mascot (DONE, awaiting approval)
+Date: 2026-07-01
+
+Santa hat: CUT (per client instruction). The hatted original is kept at
+assets/img/dog-santa.png (reversible). The Santa hat was removed from assets/img/dog.png
+by keying out the red/white/tan hat pixels, then reconstructing the crown of the head as
+smooth black fur (a matched dark dome, softened) so the top of the head reads naturally.
+At mascot display size (~120px, ~84px mobile) it looks like a normal black dog head.
+
+Component (shared, DRY):
+- dog.js at repo root (next to main.js). Reads window.DOG_CONFIG = { img, bubble, threshold }.
+- Builds a fixed bottom-left mascot, hidden at the top of the page, revealed once scrolled
+  past ~70% of the hero (capped 620px, fallback 420px): fade + slide up, then pinned.
+- Speech bubble (default ON) top-right of the dog with a dismiss x. Dismiss hides the dog
+  for the rest of that page view (in-memory only, no storage, so the every-visit rule holds).
+- z-index 40 (below the nav at 60), pointer-events off until revealed.
+- prefers-reduced-motion: plain fade, no slide. Mobile: shrinks to 84px; bubble hidden
+  under 420px so it never covers a button.
+
+Per-page config:
+- brake-clutch.html: bubble "Car making a noise? Book it in."
+- rvts.html: bubble "WOF due? We can fit you in."
+- NOT included on the chooser (index.html), as specified.
+
+CSS added to styles.css (shared) so both sites inherit.
+Dog name (DOG_NAME placeholder in the plan) is not used anywhere in the current copy,
+so no name was needed. Supply one later if you want it in the bubble or alt text.
+
+Next: Phase 5 (polish and QA: brand-aware review.html, cross-linked footers, Lighthouse,
+responsive checks). STOP for approval first.
+Still needed for Phase 5: both Google review links (Brake & Clutch and RVTS).
+
+## Phase 3 — Nav switcher (DONE, approved)
 Date: 2026-07-01
 
 What changed:
