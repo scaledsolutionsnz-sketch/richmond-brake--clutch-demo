@@ -40,33 +40,60 @@
       actx = actx || new AC();
       if (actx.state === "suspended") actx.resume();
       var t = actx.currentTime;
-      // tonal body: pitch glides down (the "woo"), lowpass warms it up
-      var osc = actx.createOscillator();
-      osc.type = "sawtooth";
-      osc.frequency.setValueAtTime(430, t);
-      osc.frequency.exponentialRampToValueAtTime(150, t + 0.18);
-      var lp = actx.createBiquadFilter();
-      lp.type = "lowpass";
-      lp.frequency.setValueAtTime(1700, t);
-      lp.frequency.exponentialRampToValueAtTime(650, t + 0.2);
-      var g = actx.createGain();
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(0.5, t + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.24);
-      osc.connect(lp); lp.connect(g); g.connect(actx.destination);
-      osc.start(t); osc.stop(t + 0.26);
-      // noise transient: the "ff" at the end
+      var dur = 0.42;                         // a fuller "woof", not a blip
+
+      // Overall punch envelope
+      var master = actx.createGain();
+      master.gain.setValueAtTime(0.0001, t);
+      master.gain.exponentialRampToValueAtTime(0.8, t + 0.03);   // punchy attack
+      master.gain.setValueAtTime(0.6, t + 0.16);                 // hold the body
+      master.gain.exponentialRampToValueAtTime(0.0001, t + dur); // decay
+      master.connect(actx.destination);
+
+      // Pitch contour "w-oo-f": quick pop up, then fall
+      function glide(osc, mult) {
+        osc.frequency.setValueAtTime(230 * mult, t);
+        osc.frequency.linearRampToValueAtTime(360 * mult, t + 0.05);
+        osc.frequency.exponentialRampToValueAtTime(115 * mult, t + dur);
+      }
+      var o1 = actx.createOscillator(); o1.type = "sawtooth"; glide(o1, 1);
+      var o2 = actx.createOscillator(); o2.type = "sawtooth"; glide(o2, 0.5); o2.detune.value = -6; // growly octave down
+
+      // Vocal-tract formant filters (gives an animal "aw/oo" vowel colour)
+      var voice = actx.createGain(); voice.gain.value = 0.5;
+      function formant(freq, q, gain) {
+        var bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = freq; bp.Q.value = q;
+        var fg = actx.createGain(); fg.gain.value = gain;
+        bp.connect(fg); fg.connect(voice);
+        return bp;
+      }
+      var f1 = formant(520, 6, 1.0), f2 = formant(1150, 8, 0.6), f3 = formant(2400, 10, 0.22);
+      o1.connect(f1); o1.connect(f2); o1.connect(f3);
+      o2.connect(f1); o2.connect(f2);
+
+      // Roughness/grit LFO so it sounds organic, not a pure tone
+      var rough = actx.createOscillator(); rough.type = "sine"; rough.frequency.value = 33;
+      var roughGain = actx.createGain(); roughGain.gain.value = 0.14;
+      rough.connect(roughGain); roughGain.connect(voice.gain);
+      voice.connect(master);
+
+      // Breathy noise: onset ("wff") and a trailing "ff"
       var nb = actx.createBufferSource();
-      var buf = actx.createBuffer(1, Math.floor(actx.sampleRate * 0.08), actx.sampleRate);
+      var buf = actx.createBuffer(1, Math.floor(actx.sampleRate * dur), actx.sampleRate);
       var d = buf.getChannelData(0);
       for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
       nb.buffer = buf;
-      var hp = actx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 900;
+      var nf = actx.createBiquadFilter(); nf.type = "bandpass"; nf.frequency.value = 1400; nf.Q.value = 0.7;
       var ng = actx.createGain();
-      ng.gain.setValueAtTime(0.22, t + 0.02);
-      ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
-      nb.connect(hp); hp.connect(ng); ng.connect(actx.destination);
-      nb.start(t + 0.02); nb.stop(t + 0.12);
+      ng.gain.setValueAtTime(0.0001, t);
+      ng.gain.exponentialRampToValueAtTime(0.32, t + 0.02);
+      ng.gain.exponentialRampToValueAtTime(0.05, t + 0.15);
+      ng.gain.exponentialRampToValueAtTime(0.2, t + 0.31);       // the trailing "ff"
+      ng.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      nb.connect(nf); nf.connect(ng); ng.connect(master);
+
+      o1.start(t); o2.start(t); rough.start(t); nb.start(t);
+      o1.stop(t + dur); o2.stop(t + dur); rough.stop(t + dur); nb.stop(t + dur);
     } catch (e) { /* audio not available, stay silent */ }
   }
   function playWoof() {
