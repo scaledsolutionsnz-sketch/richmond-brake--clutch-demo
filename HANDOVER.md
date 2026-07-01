@@ -2,7 +2,19 @@
 
 Running log of what has been done, phase by phase. Newest at top.
 
-## Phase 4 — Dog mascot (DONE, awaiting approval)
+## Adjustment (post Phase 4, client request)
+Date: 2026-07-01
+- Santa hat put BACK on the dog (assets/img/dog.png restored from dog-santa.png). The
+  no-hat version is no longer used; keep dog-santa.png as the working hatted asset.
+- Chooser landing (index.html) confirmed as the front door: you pick a site on entry.
+- Replaced the segmented switcher (two segments + home icon) with a single "Switch to the
+  other site" pill button in each nav (themed via var(--accent): red on brake, green on RVTS).
+  brake-clutch.html shows "Switch to Testing Station" -> rvts.html; rvts.html shows
+  "Switch to Brake & Clutch" -> brake-clutch.html.
+- Nav and footer brand/logo now link to index.html (the chooser), so you can always get
+  back to re-choose. (Was pointing at each site's own home.)
+
+## Phase 4 — Dog mascot (DONE, approved; hat re-added by request)
 Date: 2026-07-01
 
 Santa hat: CUT (per client instruction). The hatted original is kept at
