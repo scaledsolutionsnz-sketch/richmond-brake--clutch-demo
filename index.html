@@ -3,339 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Richmond Brake &amp; Clutch | Brakes, Clutches &amp; WOF, Richmond</title>
-<meta name="description" content="Brake and clutch specialists in Richmond, Nelson. Honest quotes, fast turnaround and a workshop locals trust. 4.8 stars from 22 Google reviews. Call Barry on 03 544 1660.">
-<meta property="og:title" content="Richmond Brake & Clutch — Brakes, Clutches & WOF, Richmond">
-<meta property="og:description" content="Brake and clutch specialists in Richmond, Nelson. Honest quotes, fast turnaround, and a workshop the locals trust.">
+<title>Richmond Brake &amp; Clutch and Richmond Vehicle Testing Station | Richmond</title>
+<meta name="description" content="Two workshops, one address in Richmond. Barry Andrews' brake and clutch repair workshop, plus Richmond Vehicle Testing Station for WOF and vehicle inspections. 13 McGlashen Ave, Richmond 7020.">
+<meta property="og:title" content="Richmond Brake & Clutch and Richmond Vehicle Testing Station">
+<meta property="og:description" content="Two workshops, one address in Richmond. Repairs on one side, WOF and vehicle testing on the other.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1200&q=70">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Khand:wght@400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<style>
+  :root{
+    --ink:#0f1114; --char:#15181d; --surface:#21262e;
+    --accent:#e02718; --accent-d:#b41d10;
+    --rvts:#7DB61C; --rvts-d:#63920f; --rvts-black:#0E0E0E;
+    --bone:#f4f1ea; --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Sora',system-ui,sans-serif;
+    background:var(--ink); color:var(--bone);
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+  }
+
+  /* Top strip */
+  .chooser-top{
+    position:fixed; top:0; left:0; right:0; z-index:5;
+    display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+    padding:16px 20px; text-align:center;
+    font-family:'Khand',sans-serif; font-weight:500;
+    letter-spacing:.16em; text-transform:uppercase; font-size:.82rem;
+    color:rgba(244,241,234,.9);
+    background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0));
+    pointer-events:none;
+  }
+  .chooser-top .dot{color:var(--accent)}
+  .chooser-top .addr{color:rgba(244,241,234,.6);font-family:'Sora';letter-spacing:.04em;text-transform:none;font-size:.78rem}
+
+  /* Split */
+  .split{display:flex; height:100vh; height:100svh; width:100%}
+  .panel{
+    position:relative; flex:1 1 50%; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none; color:var(--bone);
+    transition:flex-grow .5s var(--ease), opacity .4s var(--ease);
+    will-change:flex-grow;
+  }
+  .panel::before{
+    content:""; position:absolute; inset:0; z-index:0;
+    transition:transform .6s var(--ease), opacity .4s var(--ease);
+  }
+  .panel--brake::before{
+    background:
+      radial-gradient(120% 90% at 15% 20%, rgba(224,39,24,.20), transparent 55%),
+      linear-gradient(135deg, #1c2026 0%, #15181d 45%, #0f1114 100%);
+  }
+  .panel--rvts::before{
+    background:
+      radial-gradient(120% 90% at 85% 20%, rgba(125,182,28,.30), transparent 55%),
+      linear-gradient(135deg, #14330f 0%, #10230b 45%, #0E0E0E 100%);
+  }
+  .panel-inner{
+    position:relative; z-index:2; max-width:440px; width:100%;
+    padding:40px 44px; text-align:left;
+  }
+  .panel-kicker{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:'Khand',sans-serif; font-weight:600; text-transform:uppercase;
+    letter-spacing:.24em; font-size:.78rem; margin-bottom:18px;
+  }
+  .panel-kicker::before{content:"";width:26px;height:2px}
+  .panel--brake .panel-kicker{color:var(--accent)}
+  .panel--brake .panel-kicker::before{background:var(--accent)}
+  .panel--rvts .panel-kicker{color:var(--rvts)}
+  .panel--rvts .panel-kicker::before{background:var(--rvts)}
+  .panel h1{
+    font-family:'Khand',sans-serif; font-weight:700; text-transform:uppercase;
+    line-height:.96; font-size:clamp(2.4rem,4.2vw,3.6rem); margin-bottom:16px;
+  }
+  .panel p{
+    color:rgba(244,241,234,.82); font-size:1.05rem; line-height:1.6; max-width:38ch; margin-bottom:30px;
+  }
+  .panel-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Khand',sans-serif; font-weight:600; text-transform:uppercase;
+    letter-spacing:.06em; font-size:1rem;
+    padding:14px 26px; border-radius:6px; color:#fff;
+    transition:transform .2s var(--ease), background .2s var(--ease);
+  }
+  .panel-btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+  .panel--brake .panel-btn{background:var(--accent)}
+  .panel--rvts .panel-btn{background:var(--rvts);color:#0E0E0E}
+  .panel:hover .panel-btn{transform:translateY(-2px)}
+  .panel--brake:hover .panel-btn{background:var(--accent-d)}
+  .panel--rvts:hover .panel-btn{background:var(--rvts-d)}
+  .panel:hover .panel-btn svg{transform:translateX(4px)}
+  .panel-phone{
+    display:block; margin-top:22px;
+    font-family:'Khand',sans-serif; font-weight:500; letter-spacing:.08em;
+    font-size:1rem; color:rgba(244,241,234,.6);
+  }
+  .panel-phone b{color:rgba(244,241,234,.92);font-weight:600}
+
+  /* Desktop hover expand (55/45) with dimming */
+  @media (hover:hover) and (min-width:861px){
+    .split:hover .panel{flex-grow:.82; opacity:.6}
+    .split:hover .panel:hover{flex-grow:1.22; opacity:1}
+    .panel:hover::before{transform:scale(1.05)}
+  }
+
+  /* Divider seam on desktop */
+  @media (min-width:861px){
+    .panel--rvts{box-shadow:inset 1px 0 0 rgba(255,255,255,.06)}
+  }
+
+  /* Mobile: stack, full width, no hover effect */
+  @media (max-width:860px){
+    body{overflow:auto}
+    .split{flex-direction:column; height:auto; min-height:100svh}
+    .panel{flex:1 1 auto; min-height:52svh}
+    .panel-inner{padding:96px 26px 44px; text-align:center; max-width:520px}
+    .panel-kicker{justify-content:center}
+    .panel p{margin-left:auto;margin-right:auto}
+    .chooser-top{position:static;background:var(--ink);padding:18px 20px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .panel,.panel::before,.panel-btn,.panel-btn svg{transition:none}
+    .split:hover .panel{flex-grow:1;opacity:1}
+    .split:hover .panel:hover{flex-grow:1}
+  }
+</style>
 </head>
 <body>
 
-<!-- Intro overlay -->
-<div id="intro">
-  <div class="il">
-    <span style="animation-delay:.05s">RICHMOND</span>
-    <span class="hl" style="animation-delay:.18s">BRAKE</span>
-    <span style="animation-delay:.31s">&amp;</span>
-    <span style="animation-delay:.42s">CLUTCH</span>
-  </div>
-  <div class="bar"></div>
+<div class="chooser-top">
+  <span>Two workshops, one address in Richmond</span>
+  <span class="dot">&bull;</span>
+  <span class="addr">13 McGlashen Ave, Richmond 7020</span>
 </div>
 
-<!-- Nav -->
-<nav class="nav">
-  <a href="index.html" class="brand">
-    <span class="mark">R</span>
-    <span class="bn">Richmond Brake<small>Brake &amp; Clutch · Richmond</small></span>
+<main class="split">
+  <a class="panel panel--brake" href="brake-clutch.html" aria-label="Enter Richmond Brake and Clutch, the repair workshop">
+    <div class="panel-inner">
+      <span class="panel-kicker">Repairs</span>
+      <h1>Brakes, Clutches &amp; Repairs</h1>
+      <p>Barry's workshop. Same day quotes, cars that stop right.</p>
+      <span class="panel-btn">Enter the workshop
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="panel-phone">Call the workshop <b>03 544 1660</b></span>
+    </div>
   </a>
-  <div class="nav-links">
-    <a class="lnk" href="#services">Services</a>
-    <a class="lnk" href="#about">About</a>
-    <a class="lnk" href="#crew">The Workshop</a>
-    <a class="lnk" href="#reviews">Reviews</a>
-    <a class="lnk" href="#contact">Contact</a>
-    <a class="nav-phone" href="tel:+6435441660">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
-      03 544 1660
-    </a>
-  </div>
-  <div class="burger"><span></span><span></span><span></span></div>
-</nav>
 
-<!-- Hero -->
-<header class="hero">
-  <div class="hero-slides">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=1900&q=70')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?auto=format&fit=crop&w=1900&q=70')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1900&q=70')"></div>
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-inner">
-    <span class="eyebrow">Richmond · Nelson · Tasman</span>
-    <h1>Brakes &amp; clutches done <span class="hl">right</span>, the first time.</h1>
-    <p class="sub">The local brake and clutch workshop for Richmond drivers — straight answers, fair quotes, and a car that stops the way it should. WOF inspections too.</p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-primary">Get a Quote</a>
-      <a href="tel:+6435441660" class="btn btn-ghost">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg>
-        Call Barry
-      </a>
+  <a class="panel panel--rvts" href="rvts.html" aria-label="Enter Richmond Vehicle Testing Station for WOF and inspections">
+    <div class="panel-inner">
+      <span class="panel-kicker">Testing</span>
+      <h1>WOF &amp; Vehicle Testing</h1>
+      <p>Warrants, prechecks and inspections. Tested, trusted, road ready.</p>
+      <span class="panel-btn">Enter the testing station
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+      <span class="panel-phone">Call the station <b>03 544 9111</b></span>
     </div>
-    <div class="hero-meta">
-      <div class="m"><b>4.8★</b><span class="stars">★★★★★</span></div>
-      <div class="m"><b>22</b><span>Google reviews</span></div>
-      <div class="m"><b>Local</b><span>Richmond workshop</span></div>
-    </div>
-  </div>
-  <div class="scroll-hint">Scroll</div>
-</header>
+  </a>
+</main>
 
-<!-- Trust strip -->
-<section class="trust" style="padding:0">
-  <div class="wrap">
-    <div class="t reveal">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-      <div><h3>Right here in Richmond</h3><p>An established local workshop — no chains, no call centres. Drop in or book ahead and talk to the person doing the work.</p></div>
-    </div>
-    <div class="t reveal">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-      <div><h3>Quick turnaround</h3><p>Most brake and clutch jobs are sorted the same day or next. We know you need the car back, so we don't sit on it.</p></div>
-    </div>
-    <div class="t reveal">
-      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-      <div><h3>Quotes with no surprises</h3><p>We tell you what it needs, what it'll cost, and what can wait. You sign off before we start — every time.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- Services -->
-<section id="services" class="sec-light">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">What we do</span>
-      <h2>Brake &amp; clutch work, sorted properly</h2>
-      <p>From a squeal at the lights to a clutch that's slipping on the hill, we handle the jobs that keep Richmond drivers safe and moving.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc reveal">
-        <span class="num">01</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
-        <h3>Brake Repairs</h3>
-        <p>New pads, discs and rotors, calipers and lines. We fix the squeal, the shudder and the soft pedal so the car pulls up straight and sure.</p>
-      </div>
-      <div class="svc reveal">
-        <span class="num">02</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 12l5-3M12 12l-3 5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></div>
-        <h3>Clutch Replacement</h3>
-        <p>Slipping, juddering or heavy on the pedal? We replace clutch kits, flywheels and slave cylinders and get the bite point feeling right again.</p>
-      </div>
-      <div class="svc reveal">
-        <span class="num">03</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg></div>
-        <h3>Brake Fluid &amp; Hydraulics</h3>
-        <p>Fluid flushes, bleeds and master cylinder work. Old fluid kills braking — we refresh the system so the pedal stays firm and reliable.</p>
-      </div>
-      <div class="svc reveal">
-        <span class="num">04</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2 2 6-6a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z"/></svg></div>
-        <h3>Disc Machining</h3>
-        <p>Warped or scored rotors machined back true on the lathe — often cheaper than replacing and a quick fix for that braking shudder.</p>
-      </div>
-      <div class="svc reveal">
-        <span class="num">05</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></div>
-        <h3>WOF Inspections</h3>
-        <p>Warrant of Fitness checks done while you wait. If something needs doing to pass, we'll show you and quote it before any work starts.</p>
-      </div>
-      <div class="svc reveal">
-        <span class="num">06</span>
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/><path d="M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
-        <h3>Brake &amp; ABS Diagnostics</h3>
-        <p>Warning light on? Handbrake not holding? We diagnose ABS faults, sensors and uneven wear and tell you straight what's going on.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section id="about" class="sec-paper">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-media reveal">
-        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=900&q=70" alt="Close-up of a vehicle brake disc and caliper being serviced" width="900" height="675" loading="lazy">
-        <div class="tag"><b>4.8★</b><span>Rated by locals</span></div>
-      </div>
-      <div class="about-copy reveal">
-        <span class="eyebrow">About the workshop</span>
-        <h2>The brake shop Richmond drivers actually trust</h2>
-        <p>Richmond Brake &amp; Clutch is a specialist workshop focused on the part of your car that matters most — the bit that stops it. Brakes and clutches are what we do day in, day out, so you get the experience that comes from doing the same job thousands of times over.</p>
-        <p>You'll deal with the people doing the work, get a clear explanation of what your car needs, and only pay for what it actually needs doing. That's how we've earned a 4.8-star rating from local drivers.</p>
-        <ul class="checklist">
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Locally owned and run, right in Richmond</li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Honest quotes — sign off before we start</li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg></span>Brakes, clutches and WOF under one roof</li>
-        </ul>
-        <a href="#contact" class="btn btn-outline" style="margin-top:30px">Book your car in</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Crew -->
-<section id="crew" class="sec-dark">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow center">The team</span>
-      <h2>The people on the tools</h2>
-      <p>A small, hands-on workshop — when you call, you talk to someone who knows your car.</p>
-    </div>
-    <div style="text-align:center;margin-bottom:30px"><span class="badge">Owner real · other roles illustrative</span></div>
-    <div class="crew-grid">
-      <div class="crew reveal">
-        <div class="av">B</div>
-        <div class="role">Owner / Operator</div>
-        <h3>Barry</h3>
-        <p>Runs the workshop and quotes the jobs. Barry's the one who'll tell you straight what your car needs and what it doesn't.</p>
-      </div>
-      <div class="crew reveal">
-        <div class="av">BT</div>
-        <div class="role">Brake Technician</div>
-        <h3>Workshop Tech</h3>
-        <p>Handles the day-to-day brake and clutch work — pads, discs, clutch kits and hydraulics, done by the book.</p>
-      </div>
-      <div class="crew reveal">
-        <div class="av">WO</div>
-        <div class="role">WOF Inspector</div>
-        <h3>WOF &amp; Service</h3>
-        <p>Looks after Warrant of Fitness inspections and the safety checks, so you leave knowing exactly where the car stands.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Reviews -->
-<section id="reviews" class="sec-light">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow center">What locals say</span>
-      <h2>Trusted by Richmond drivers</h2>
-      <p><span class="badge">Example reviews</span></p>
-    </div>
-    <div class="rev-grid">
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Took my ute in with a shudder under braking. Barry sorted it the same day, machined the discs instead of just selling me new ones. Fair price and a straight answer — exactly what you want."</p>
-        <div class="who"><span class="ci">DM</span><div><b>Dean M.</b><span>Wakefield</span></div></div>
-        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#e02718" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Clutch went on the way home and these guys fitted me in the next morning. Clear quote up front, no nasty surprises at the end. The car drives like new. Won't go anywhere else now."</p>
-        <div class="who"><span class="ci">SK</span><div><b>Sarah K.</b><span>Stoke</span></div></div>
-        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#e02718" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
-      </div>
-      <div class="rev reveal">
-        <div class="stars">★★★★★</div>
-        <p>"Honest, friendly and quick. Booked in for new brakes and a WOF, got both done while I waited. They showed me the worn pads rather than just telling me. Highly recommend to anyone in Richmond."</p>
-        <div class="who"><span class="ci">RP</span><div><b>Reuben P.</b><span>Brightwater</span></div></div>
-        <span class="gmark"><svg width="14" height="14" viewBox="0 0 24 24"><path fill="#e02718" d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.5 6.7L12 17.3 5.9 20.8l1.5-6.7L2.2 8.9l6.9-.6z"/></svg> Posted on Google</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Review funnel banner -->
-<section class="funnel">
-  <div class="wrap">
-    <div class="stars reveal">★★★★★</div>
-    <h2 class="reveal">Happy with our work? Leave us a review</h2>
-    <p class="reveal">It takes thirty seconds and it genuinely helps a small local workshop. Tap below to leave a quick rating.</p>
-    <a href="review.html" class="btn btn-primary reveal">Leave a Review</a>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" class="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <span class="eyebrow">Get in touch</span>
-        <h2>Book your car in</h2>
-        <p>Tell us what the car's doing and we'll get back to you with a quote and a time. For anything urgent, give Barry a call — the phone's the fastest way to reach us.</p>
-        <div class="cinfo">
-          <a href="tel:+6435441660">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.93.36 1.85.7 2.73a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.35-1.35a2 2 0 0 1 2.11-.45c.88.34 1.8.57 2.73.7A2 2 0 0 1 22 16.92z"/></svg></span>
-            <div><b>03 544 1660</b><span>Call the workshop</span></div>
-          </a>
-          <a href="mailto:office@richmondvts.co.nz">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-            <div><b>office@richmondvts.co.nz</b><span>Email us</span></div>
-          </a>
-          <div>
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <div><b>Richmond, Nelson</b><span>Tasman region</span></div>
-          </div>
-          <div>
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><b>Mon – Fri, 8am – 5pm</b><span>Workshop hours</span></div>
-          </div>
-        </div>
-      </div>
-      <form class="form reveal" action="https://formsubmit.co/office@richmondvts.co.nz" method="POST">
-        <input type="hidden" name="_subject" value="New enquiry — Richmond Brake & Clutch website">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://richmond-brake-clutch-demo.vercel.app/index.html#contact">
-        <div class="row">
-          <div class="field"><label>Name</label><input type="text" name="Name" placeholder="Your name" required></div>
-          <div class="field"><label>Phone</label><input type="tel" name="Phone" placeholder="Best number to reach you" required></div>
-        </div>
-        <div class="row">
-          <div class="field"><label>Email</label><input type="email" name="Email" placeholder="you@email.co.nz"></div>
-          <div class="field"><label>Suburb</label><input type="text" name="Suburb" placeholder="Richmond, Stoke..."></div>
-        </div>
-        <div class="field">
-          <label>What does the car need?</label>
-          <select name="Service">
-            <option>Brake repairs</option>
-            <option>Clutch replacement</option>
-            <option>Brake fluid / hydraulics</option>
-            <option>Disc machining</option>
-            <option>WOF inspection</option>
-            <option>Not sure — please advise</option>
-          </select>
-        </div>
-        <div class="field"><label>Vehicle &amp; details</label><textarea name="Message" placeholder="Make and model, and what it's doing — e.g. 'squealing under braking', 'clutch slipping on hills'..." required></textarea></div>
-        <button type="submit" class="btn btn-primary">Send Enquiry</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-about">
-        <a href="index.html" class="brand">
-          <span class="mark">R</span>
-          <span class="bn">Richmond Brake<small>Brake &amp; Clutch · Richmond</small></span>
-        </a>
-        <p>The local brake and clutch specialists for Richmond, Nelson and the wider Tasman region. Honest work, fair quotes, cars that stop properly.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Workshop</h4>
-        <a href="#services">Services</a>
-        <a href="#about">About us</a>
-        <a href="#crew">The workshop</a>
-        <a href="#reviews">Reviews</a>
-        <a href="review.html">Leave a review</a>
-      </div>
-      <div class="foot-col">
-        <h4>Get in touch</h4>
-        <a href="tel:+6435441660">03 544 1660</a>
-        <a href="mailto:office@richmondvts.co.nz">office@richmondvts.co.nz</a>
-        <p>Richmond, Nelson</p>
-        <p>Mon – Fri, 8am – 5pm</p>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <p>© 2026 Richmond Brake &amp; Clutch · Richmond, Nelson</p>
-      <div class="links">
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="review.html">Reviews</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="main.js"></script>
 </body>
 </html>
