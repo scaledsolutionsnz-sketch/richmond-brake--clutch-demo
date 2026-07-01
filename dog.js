@@ -1,8 +1,10 @@
 /* ==========================================================================
    Hunter, the scroll-triggered workshop dog. Shared by both sites (not chooser).
    Per-page config:
-     window.DOG_CONFIG = { img, name, bark, bubble, threshold }
-   On reveal (and on click) Hunter does a little "Woof!" then says his line.
+     window.DOG_CONFIG = { img, name, bark, bubble, threshold, woof }
+     - woof: (optional) URL of a real bark sound, e.g. "assets/woof.mp3".
+       If not set, a short "woof" is synthesized with the Web Audio API.
+   On reveal Hunter does a silent "Woof!" bounce; CLICKING him plays a woof sound too.
    ========================================================================== */
 (function () {
   "use strict";
@@ -26,6 +28,58 @@
   var dogImg = wrap.querySelector(".dog-img");
   var dismissed = false, barkedOnce = false, seqTimer = null, reduce = false;
   try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  /* --- Woof sound (real file if provided, otherwise synthesized) --- */
+  var realWoof = cfg.woof ? new Audio(cfg.woof) : null;
+  if (realWoof) realWoof.preload = "auto";
+  var actx = null;
+  function synthWoof() {
+    try {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      actx = actx || new AC();
+      if (actx.state === "suspended") actx.resume();
+      var t = actx.currentTime;
+      // tonal body: pitch glides down (the "woo"), lowpass warms it up
+      var osc = actx.createOscillator();
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(430, t);
+      osc.frequency.exponentialRampToValueAtTime(150, t + 0.18);
+      var lp = actx.createBiquadFilter();
+      lp.type = "lowpass";
+      lp.frequency.setValueAtTime(1700, t);
+      lp.frequency.exponentialRampToValueAtTime(650, t + 0.2);
+      var g = actx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.5, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.24);
+      osc.connect(lp); lp.connect(g); g.connect(actx.destination);
+      osc.start(t); osc.stop(t + 0.26);
+      // noise transient: the "ff" at the end
+      var nb = actx.createBufferSource();
+      var buf = actx.createBuffer(1, Math.floor(actx.sampleRate * 0.08), actx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      nb.buffer = buf;
+      var hp = actx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 900;
+      var ng = actx.createGain();
+      ng.gain.setValueAtTime(0.22, t + 0.02);
+      ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+      nb.connect(hp); hp.connect(ng); ng.connect(actx.destination);
+      nb.start(t + 0.02); nb.stop(t + 0.12);
+    } catch (e) { /* audio not available, stay silent */ }
+  }
+  function playWoof() {
+    if (realWoof) {
+      try {
+        realWoof.currentTime = 0;
+        var p = realWoof.play();
+        if (p && p.catch) p.catch(function () { synthWoof(); });
+        return;
+      } catch (e) { /* fall through to synth */ }
+    }
+    synthWoof();
+  }
 
   function barkSequence() {
     if (!say) return;
@@ -67,8 +121,12 @@
   window.addEventListener("resize", onScroll, { passive: true });
   onScroll();
 
-  // Click Hunter to make him woof again
-  dogImg.addEventListener("click", function () { if (!dismissed) barkSequence(); });
+  // Click Hunter to make him woof (sound + bounce)
+  dogImg.addEventListener("click", function () {
+    if (dismissed) return;
+    playWoof();
+    barkSequence();
+  });
 
   var x = wrap.querySelector(".dog-x");
   if (x) {
