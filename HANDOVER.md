@@ -2,6 +2,15 @@
 
 Running log of what has been done, phase by phase. Newest at top.
 
+## Adjustment 2 (post Phase 4, client request)
+Date: 2026-07-01
+- Dog name confirmed: HUNTER (used in alt text, aria-labels and the bubble).
+- Hunter now pinned to the very bottom-left corner (left:0, bottom:0, desktop + mobile).
+- On reveal (and on click) Hunter does a "Woof!" (a quick bark bounce animation) then the
+  bubble switches to "I'm Hunter. <per-side line>". prefers-reduced-motion skips the bounce.
+- Per-side lines unchanged: brake "Car making a noise? Book it in.",
+  rvts "WOF due? We can fit you in." Config now carries name + bark.
+
 ## Adjustment (post Phase 4, client request)
 Date: 2026-07-01
 - Santa hat put BACK on the dog (assets/img/dog.png restored from dog-santa.png). The
