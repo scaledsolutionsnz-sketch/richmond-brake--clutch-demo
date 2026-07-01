@@ -170,3 +170,13 @@ Next: Phase 1 (chooser landing at index.html). STOP for approval first.
 
 Open confirms carried forward: dog name, bubble copy, santa hat, RVTS hours,
 both Google review links, dog image asset, RVTS logo asset. See PROJECT_CONTEXT.md.
+
+## Adjustment 3 (mobile optimization)
+Date: 2026-07-01
+- Sites: tighter nav + wrap padding on mobile, smaller stacked hero with full-width CTAs,
+  scrollable mobile menu (overflow-y), reduced section spacing (64px, 52px <=420),
+  smaller headings, form padding trimmed. Brand mark/logo scaled down on mobile.
+- Hunter: dims to ~16% opacity and goes non-interactive once the contact form/footer is in
+  view (mobile only via CSS), so he never covers a button. Bubble already hidden <=420.
+- Chooser: panels 46svh each so both choices show with balanced padding, smaller headings,
+  full-width buttons and stacked address line under 420px.

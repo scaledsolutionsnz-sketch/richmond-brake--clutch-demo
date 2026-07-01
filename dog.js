@@ -46,6 +46,7 @@
     if (hero && hero.offsetHeight) return Math.min(hero.offsetHeight * 0.7, 620);
     return fallback;
   }
+  var contact = document.querySelector("#contact");
   function onScroll() {
     if (dismissed) return;
     if (window.scrollY > threshold()) {
@@ -55,6 +56,11 @@
       }
     } else {
       wrap.classList.remove("in");
+    }
+    // Keep Hunter out of the way of the contact form / footer (dim rule only bites on mobile CSS)
+    if (contact) {
+      var near = contact.getBoundingClientRect().top < window.innerHeight * 0.85;
+      wrap.classList.toggle("dim", near);
     }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
