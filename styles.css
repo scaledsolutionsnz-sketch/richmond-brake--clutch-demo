@@ -437,3 +437,31 @@ section{padding:100px 0}
 @media(max-width:420px){
   .dog-bubble{display:none}   /* keep it out of the way on the smallest screens */
 }
+
+/* ===== Google reviews (real, from Google Business Profile) ===== */
+.gsum{display:flex;align-items:center;justify-content:center;gap:clamp(20px,4vw,40px);flex-wrap:wrap;
+  background:var(--paper);border:1px solid rgba(0,0,0,.08);border-radius:var(--r);
+  padding:22px 34px;max-width:720px;margin:0 auto 40px;box-shadow:0 20px 44px -32px rgba(0,0,0,.4)}
+.gsum-score{display:flex;flex-direction:column;align-items:center;line-height:1.1;text-align:center}
+.gsum-score b{font-family:'Khand';font-weight:600;font-size:3.1rem;color:var(--text);line-height:.9}
+.gsum-score .stars{color:var(--accent);letter-spacing:2px;font-size:1rem;margin:5px 0 3px}
+.gsum-score>span:last-child{font-size:.8rem;color:var(--muted)}
+.gsum-div{width:1px;align-self:stretch;background:rgba(0,0,0,.1)}
+.gsum-g{display:flex;align-items:center;gap:11px;color:var(--muted);font-size:.86rem;line-height:1.15}
+.gsum-glogo{width:30px;height:30px}
+.gsum .btn{white-space:nowrap}
+.rev{gap:13px;padding:24px 26px}
+.rev p{font-style:normal;color:var(--text);font-size:.95rem;line-height:1.6}
+.rev-top{display:flex;align-items:center;gap:12px}
+.rev .ci{width:42px;height:42px;border-radius:50%;color:#fff;display:grid;place-items:center;
+  font-family:'Khand';font-weight:500;font-size:1.15rem;flex:0 0 auto}
+.rev-id{flex:1;min-width:0}
+.rev-id b{display:block;font-size:.96rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rev-id span{font-size:.75rem;color:var(--muted)}
+.rev-g{width:18px;height:18px;flex:0 0 auto}
+.rev-rate{display:flex;align-items:center;gap:10px}
+.rev-rate .stars{color:var(--accent);letter-spacing:1px;font-size:1rem}
+.rev-rate .off{color:#d3d7dc}
+.rev-rate time{font-size:.77rem;color:var(--muted)}
+.rev.is-hidden{display:none}
+.rev-more{text-align:center;margin-top:34px}

@@ -44,3 +44,15 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Reviews: reveal the full Google list
+const revMore = document.getElementById('revMore');
+if (revMore) {
+  revMore.addEventListener('click', () => {
+    document.querySelectorAll('.rev.is-hidden').forEach(el => {
+      el.classList.remove('is-hidden');
+      el.classList.add('in');
+    });
+    revMore.parentElement.style.display = 'none';
+  });
+}
